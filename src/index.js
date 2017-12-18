@@ -7,15 +7,29 @@ import {
 import './styles.scss';
 
 let allItems = [];
+let toggleSort = true;
 
 const loadAllItems = async ()=> {
   allItems = await getGarageItems();
-  allItems.sort((a, b) => {
-    return a.name - b.name;
-  });
+  sortItems();
   $('.list-container').html('');
   renderItems(allItems);
   setCounts();
+};
+
+const sortItems = () => {
+  return toggleSort ?
+    allItems.sort((a, b) => a.name > b.name) :
+    allItems.sort((a, b) => a.name < b.name);
+};
+
+const changeSort = () => {
+  toggleSort = !toggleSort;
+  const text = toggleSort ? 'A - Z' : 'Z - A';
+  sortItems();
+  $('.list-container').html('');
+  renderItems(allItems);
+  $('.sort').text(text);
 };
 
 const renderItems = items => {
@@ -63,6 +77,8 @@ const addItem = async e => {
 const changeCleanliness = async e => {
   const id = $(e.target).closest('.one-item').data('id');
   await patchGarageItem(id, e.target.value);
+  const itemIndex = allItems.findIndex(item => id === item.id);
+  allItems[itemIndex].cleanliness = e.target.value;
   setCounts();
 };
 
@@ -74,3 +90,4 @@ $('.one-item').click(e => {
 });
 $('[name="add-new-item"]').submit(addItem);
 $('[name="change-cleanliness"]').change(changeCleanliness);
+$('.sort').click(changeSort);
