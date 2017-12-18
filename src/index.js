@@ -13,12 +13,12 @@ const loadAllItems = async ()=> {
   allItems.sort((a, b) => {
     return a.name - b.name;
   });
+  $('.list-container').html('');
   renderItems(allItems);
   setCounts();
 };
 
 const renderItems = items => {
-  $('.list-container').html('');
   const documentFragment = $(document.createDocumentFragment());
   items.forEach(item => {
     documentFragment.append(buildDOMItem(item));
@@ -52,9 +52,12 @@ const addItem = async e => {
     name: $('[name="name"]').val(),
     reason: $('[name="reason"]').val(),
     cleanliness: $('[name="cleanliness"]').val()
-  }
-  console.log(payload);
-  // const id = await postGarageItem(payload)
+  };
+  const id = await postGarageItem(payload);
+  const newItem = Object.assign({}, { id: id[0] }, payload);
+  allItems.push(newItem);
+  loadAllItems();
+  setCounts();
 };
 
 $(document).ready(loadAllItems());

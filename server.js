@@ -26,7 +26,7 @@ app.get('/api/v1/items', (request, response) => {
   database('items').select()
     .then(items => {
       if (items.length < 1) {
-        response.status(404).send('No items found');
+        response.status(404).json({ error: 'No items found' });
       }
       response.status(200).json(items);
     })
@@ -38,7 +38,7 @@ app.post('/api/v1/items', (request, response) => {
   for (let requiredParameter of ['name', 'reason', 'cleanliness']) {
     if (!request.body[requiredParameter]) {
       return response.status(422)
-        .send(`Expected format: { name: <String>, reason: <String>, cleanliness: <String> }. You're missing a "${requiredParameter}" property.`);
+        .json({ error: `Expected format: { name: <String>, reason: <String>, cleanliness: <String> }. You're missing a "${requiredParameter}" property.` });
     }
   }
   database('items').insert(request.body, 'id')
@@ -52,12 +52,12 @@ app.post('/api/v1/items', (request, response) => {
 app.patch('/api/v1/items/:id', (request, response) => {
   if (!request.body.cleanliness) {
     return response.status(422)
-      .send('cleanliness property required');
+      .send({ error: 'cleanliness property required' });
   }
   database('items').where('id', request.params.id).update({ cleanliness: request.body.cleanliness})
     .then(result => {
       if (!result) {
-        response.status(422).json(`No item with ID ${request.params.id}`);
+        response.status(422).json({ error: `No item with ID ${request.params.id}` });
       } else {
         response.sendStatus(204);
       }

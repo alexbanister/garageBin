@@ -8,7 +8,10 @@ export const getGarageItems = () => {
 export const postGarageItem = item => {
   return fetch('/api/v1/items', {
     method: 'post',
-    body: JSON.stringify(item)
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
     .then(response => response.json())
     .then(parsedResponse => parsedResponse)
