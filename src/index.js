@@ -46,4 +46,19 @@ const setCounts = () => {
   $('.rancid-count').text(rancid);
 };
 
+const addItem = async e => {
+  e.preventDefault();
+  const payload = {
+    name: $('[name="name"]').val(),
+    reason: $('[name="reason"]').val(),
+    cleanliness: $('[name="cleanliness"]').val()
+  }
+  console.log(payload);
+  // const id = await postGarageItem(payload)
+};
+
 $(document).ready(loadAllItems());
+$('.one-item').click(e => {
+  $(e.target).closest('.one-item').find('.item-details').toggleClass('item-details-on');
+});
+$('form').submit(addItem);
