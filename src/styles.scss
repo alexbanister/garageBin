@@ -166,3 +166,28 @@ main {
     font-weight: 700;
   }
 }
+@media (max-width: 700px) {
+  html {
+    font-size: .8rem;
+  }
+  main {
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
+    grid-template-areas: "add" "counts" "list";
+    .garage-list {
+      .add-item {
+        margin-bottom: 2rem;
+      }
+      .item-details {
+        flex-direction: column;
+      }
+      .item-reason {
+        width: 100%;
+      }
+      .item-cleanliness {
+        width: 100%;
+        text-align: left;
+      }
+    }
+  }
+}
