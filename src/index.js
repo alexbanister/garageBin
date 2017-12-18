@@ -25,11 +25,11 @@ const sortItems = () => {
 
 const changeSort = () => {
   toggleSort = !toggleSort;
-  const text = toggleSort ? 'A - Z' : 'Z - A';
+  const text = toggleSort ? 'A -> Z' : 'Z -> A';
   sortItems();
   $('.list-container').html('');
   renderItems(allItems);
-  $('.sort').text(text);
+  $('.sort h5').text(text);
 };
 
 const renderItems = items => {

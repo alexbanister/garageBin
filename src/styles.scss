@@ -42,6 +42,19 @@ input, select, button {
   margin: 1rem 0;
   padding: 0 1rem;
 }
+button{
+  background: $brand-color-dark;
+  color: $light;
+  &:hover {
+    background: $brand-contrast;
+    cursor: pointer;
+  }
+  &:disabled {
+    background: #cccccc;
+    color: #999999;
+    cursor: not-allowed;
+  }
+}
 main {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -87,7 +100,23 @@ main {
       background: $brand-contrast;
       color: $light;
       padding: .5rem;
-      margin: 2rem 0 .5rem 0;
+      margin: 2rem 0 0 0;
+    }
+    .sort {
+      display: flex;
+      font-size: 1rem;
+      color: $light;
+      padding: .5rem;
+      margin-bottom: .5rem;
+      background: $brand-contrast;
+      cursor: pointer;
+      &:hover {
+        color: $brand-color-dark;
+      }
+      h5 {
+        padding: 0 .5rem;
+        font-size: 1rem;
+      }
     }
     .one-item {
       display: flex;
@@ -95,6 +124,11 @@ main {
       background: #ffffff;
       padding: 1rem;
       margin: .25rem 0;
+      cursor: pointer;
+      &:hover {
+        background: $brand-color-dark;
+        color: $light;
+      }
       h3, .item-details {
         width: 100%;
         display: flex;

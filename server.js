@@ -50,7 +50,6 @@ app.post('/api/v1/items', (request, response) => {
     });
 });
 app.patch('/api/v1/items/:id', (request, response) => {
-  console.log('id', parseInt(request.params.id));
   if (!request.body.cleanliness) {
     return response.status(422)
       .send({ error: 'cleanliness property required' });
