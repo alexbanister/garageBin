@@ -2,12 +2,75 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:300,700" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
+    <title>Garage Bin</title>
   </head>
   <body>
-    <h1>Testing</h1>
+    <header>
+      <h1>Garage<strong>Bin</strong></h1>
+    </header>
+    <main>
+      <article class="add-item">
+        <form>
+          <input type="text" name="name" value="" placeholder="Item Name">
+          <input type="text" name="reason" value="" placeholder="Reason">
+          <select name="cleanliness">
+            <option value="">Cleanliness</option>
+            <option value="Sparkling">Sparkling</option>
+            <option value="Dusty">Dusty</option>
+            <option value="Rancid">Rancid</option>
+          </select>
+          <button type="submit" name="save">Save Item</button>
+        </form>
+      </article>
+      <article class="item-counts">
+        <span class="title total-count-title">
+          Total Items
+        </span>
+        <span class="count total-count">
+          3
+        </span>
+        <span class="title sparkling-count-title">
+          Sparkling Items
+        </span>
+        <span class="count sparkling-count">
+          3
+        </span>
+        <span class="title dusty-count-title">
+          Dusty Items
+        </span>
+        <span class="count dusty-count">
+          3
+        </span>
+        <span class="title rancid-count-title">
+          Rancid Items
+        </span>
+        <span class="count rancid-count">
+          3
+        </span>
 
+      </article>
+      <article class="garage-list">
+        <h2>My Garage</h2>
+        <div class="list-container"></div>
+      </article>
+    </main>
+    <div class="one-item">
+      <h3>NAME</h3>
+      <div class="item-details">
+        <span class="item-reason">
+          Blah blah
+        </span>
+        <span class="item-cleanliness">
+          <select name="cleanliness">
+            <option value="Sparkling">Sparkling</option>
+            <option value="Dusty">Dusty</option>
+            <option value="Rancid">Rancid</option>
+          </select>
+        </span>
+      </div>
+    </div>
   <script src="bundle.js"></script>
   </body>
 </html>

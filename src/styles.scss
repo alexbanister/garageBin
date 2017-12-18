@@ -1,3 +1,16 @@
+@mixin linear-gradient($color2, $color1) {
+  background: $color1;
+  background: -moz-linear-gradient(top, $color1 0%, $color2 100%);
+  background: -webkit-linear-gradient(top, $color1 0%, $color2 100%);
+  background: linear-gradient(to bottom, $color1 0%, $color2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=0 );
+}
+
+$brand-color-light: #572181;
+$brand-color-dark: #421069;
+$brand-contrast: #e0b01e;
+$light: #eeeeee;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,4 +18,91 @@
 }
 html {
   font-size: 1em;
+  font-family: 'Dosis', sans-serif;
+  background: $light;
+}
+.one-item {
+  display: none;
+}
+header {
+  @include linear-gradient($brand-color-dark, $brand-color-light);
+  color: $light;
+  h1{
+    padding: 1rem;
+    text-align: center;
+    strong {
+      color: $brand-contrast;
+    }
+  }
+}
+input, select, button {
+  width: 100%;
+  font-size: 1.5rem;
+  height: 3rem;
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 5rem;
+  grid-template-areas: "add counts" "list list";
+  padding: 2rem;
+  .add-item {
+    grid-area: add;
+    display: flex;
+    flex-direction: column;
+  }
+  .item-counts {
+    grid-area: counts;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin-top: -1rem;
+    .count, .title {
+      font-size: 2rem;
+      border-bottom: 1px solid $brand-color-dark;
+      display: flex;
+      align-items: center;
+    }
+    .count {
+      font-weight: 700;
+      justify-content: flex-end;
+    }
+  }
+  .garage-list {
+    grid-area: list;
+    display: flex;
+    flex-direction: column;
+    .item-details {
+      display: none;
+    }
+    h2 {
+      font-size: 2rem;
+      text-align: center;
+      background: $brand-contrast;
+      color: $light;
+      padding: .5rem;
+      margin: 2rem 0 .5rem 0;
+    }
+    .one-item {
+      display: flex;
+      flex-wrap: wrap;
+      background: #ffffff;
+      padding: 1rem;
+      margin: .25rem 0;
+      h3, .item-details {
+        width: 100%;
+        display: flex;
+      }
+    }
+    .item-reason {
+      width: 75%;
+      display: flex;
+      align-items: center;
+    }
+    .item-cleanliness {
+      width: 25%;
+      text-align: right;
+    }
+  }
 }
