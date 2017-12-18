@@ -13,9 +13,9 @@
     <main>
       <article class="add-item">
         <form name="add-new-item">
-          <input type="text" name="name" value="" placeholder="Item Name">
-          <input type="text" name="reason" value="" placeholder="Reason">
-          <select name="cleanliness">
+          <input type="text" name="name" value="" placeholder="Item Name" required>
+          <input type="text" name="reason" value="" placeholder="Reason" required>
+          <select name="cleanliness" required>
             <option value="">Cleanliness</option>
             <option value="Sparkling">Sparkling</option>
             <option value="Dusty">Dusty</option>
@@ -28,27 +28,19 @@
         <span class="title total-count-title">
           Total Items
         </span>
-        <span class="count total-count">
-          3
-        </span>
+        <span class="count total-count"></span>
         <span class="title sparkling-count-title">
           Sparkling Items
         </span>
-        <span class="count sparkling-count">
-          3
-        </span>
+        <span class="count sparkling-count"></span>
         <span class="title dusty-count-title">
           Dusty Items
         </span>
-        <span class="count dusty-count">
-          3
-        </span>
+        <span class="count dusty-count"></span>
         <span class="title rancid-count-title">
           Rancid Items
         </span>
-        <span class="count rancid-count">
-          3
-        </span>
+        <span class="count rancid-count"></span>
 
       </article>
       <article class="garage-list">
@@ -72,6 +64,11 @@
             <option value="Rancid">Rancid</option>
           </select>
         </span>
+      </div>
+    </div>
+    <div class="garage-door">
+      <div class="open">
+        Open Garage
       </div>
     </div>
   <script src="bundle.js"></script>

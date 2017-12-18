@@ -82,6 +82,22 @@ const changeCleanliness = async e => {
   setCounts();
 };
 
+const validateForm = () => {
+  const name = $('[name="name"]').val();
+  const reason = $('[name="reason"]').val();
+  const cleanliness = $('[name="cleanliness"]').val();
+  if (name !== '' & reason !== '' & cleanliness !== '') {
+    $('[name="save"]').prop('disabled', false);
+  } else {
+    $('[name="save"]').prop('disabled', true);
+  }
+};
+
+const openGarage = () => {
+  $('.open').slideUp();
+  $('.garage-door').slideUp({ duration: 3000 });
+};
+
 $(document).ready(loadAllItems());
 $('.one-item').click(e => {
   if (e.target.name !== 'change-cleanliness') {
@@ -91,3 +107,5 @@ $('.one-item').click(e => {
 $('[name="add-new-item"]').submit(addItem);
 $('[name="change-cleanliness"]').change(changeCleanliness);
 $('.sort').click(changeSort);
+$('[name="name"], [name="reason"], [name="cleanliness"]').change(validateForm);
+$('.open').click(openGarage);
