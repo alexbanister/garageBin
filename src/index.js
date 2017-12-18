@@ -71,6 +71,9 @@ const addItem = async e => {
   const newItem = Object.assign({}, { id: id[0] }, payload);
   allItems.push(newItem);
   loadAllItems();
+  $('[name="name"]').val('');
+  $('[name="reason"]').val('');
+  $('[name="cleanliness"]').val('');
   setCounts();
 };
 
