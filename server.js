@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 app.set('port', process.env.PORT || 3000);
 
-app.locals.title = 'APP NAME';
+app.locals.title = 'Garage Bin';
 
 app.listen(app.get('port'), () => {
   // eslint-disable-next-line no-console
