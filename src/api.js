@@ -7,7 +7,7 @@ export const getGarageItems = () => {
 
 export const postGarageItem = item => {
   return fetch('/api/v1/items', {
-    method: 'post',
+    method: 'POST',
     body: JSON.stringify(item),
     headers: {
       'Content-Type': 'application/json'
@@ -18,10 +18,13 @@ export const postGarageItem = item => {
     .catch(err => err);
 };
 
-export const patchGarageItem = item => {
-  return fetch('/api/v1/items', {
-    method: 'patch',
-    body: JSON.stringify({ cleanliness: item })
+export const patchGarageItem = (id, cleanliness) => {
+  return fetch(`/api/v1/items/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ cleanliness: cleanliness }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
     .then(response => response.json())
     .then(parsedResponse => parsedResponse)

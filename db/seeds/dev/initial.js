@@ -1,6 +1,7 @@
 
 exports.seed = function(knex) {
   return knex('items').del()
+  .then(() => knex.raw('ALTER SEQUENCE items_id_seq RESTART WITH 1'))
     .then(() => {
       return knex('items').insert([
         {

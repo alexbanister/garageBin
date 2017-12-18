@@ -31,7 +31,7 @@ const buildDOMItem = item => {
     .data('id', item.id);
   $(newItem).find('h3').text(item.name);
   $(newItem).find('.item-reason').text(item.reason);
-  $(newItem).find('[name="cleanliness"]').val(item.cleanliness);
+  $(newItem).find('[name="change-cleanliness"]').val(item.cleanliness);
   return newItem;
 };
 
@@ -60,8 +60,17 @@ const addItem = async e => {
   setCounts();
 };
 
+const changeCleanliness = async e => {
+  const id = $(e.target).closest('.one-item').data('id');
+  await patchGarageItem(id, e.target.value);
+  setCounts();
+};
+
 $(document).ready(loadAllItems());
 $('.one-item').click(e => {
-  $(e.target).closest('.one-item').find('.item-details').toggleClass('item-details-on');
+  if (e.target.name !== 'change-cleanliness') {
+    $(e.target).closest('.one-item').find('.item-details').toggleClass('item-details-on');
+  }
 });
-$('form').submit(addItem);
+$('[name="add-new-item"]').submit(addItem);
+$('[name="change-cleanliness"]').change(changeCleanliness);

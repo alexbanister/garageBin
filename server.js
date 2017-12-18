@@ -50,11 +50,12 @@ app.post('/api/v1/items', (request, response) => {
     });
 });
 app.patch('/api/v1/items/:id', (request, response) => {
+  console.log('id', parseInt(request.params.id));
   if (!request.body.cleanliness) {
     return response.status(422)
       .send({ error: 'cleanliness property required' });
   }
-  database('items').where('id', request.params.id).update({ cleanliness: request.body.cleanliness})
+  database('items').where('id', parseInt(request.params.id)).update(request.body)
     .then(result => {
       if (!result) {
         response.status(422).json({ error: `No item with ID ${request.params.id}` });
